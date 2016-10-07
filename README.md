@@ -1,6 +1,13 @@
 # foo
 foo bar baz
 
+## Installing linux software on linux (without root)
+
+```bash
+# micro
+curl -sL https://github.com/thecotne/foo/raw/master/scripts/micro.sh | bash -
+```
+
 ## Installing windows software on linux
 
 install dependencies
