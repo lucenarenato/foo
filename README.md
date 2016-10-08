@@ -5,7 +5,7 @@ foo bar baz
 
 ```bash
 # micro
-curl -sL https://github.com/thecotne/foo/raw/master/scripts/micro.sh | bash -
+curl -sL https://github.com/thecotne/foo/raw/master/scripts/micro | bash -
 ```
 
 ## Installing windows software on linux
@@ -24,9 +24,9 @@ install prefered software from list below
 
 ```bash
 # HeidiSQL
-curl -sL https://github.com/thecotne/foo/raw/master/scripts/HeidiSQL.sh | sudo -E bash -
+curl -sL https://github.com/thecotne/foo/raw/master/scripts/HeidiSQL | sudo -E bash -
 
 # WinSCP
-curl -sL https://github.com/thecotne/foo/raw/master/scripts/WinSCP.sh | sudo -E bash -
+curl -sL https://github.com/thecotne/foo/raw/master/scripts/WinSCP | sudo -E bash -
 ```
 
