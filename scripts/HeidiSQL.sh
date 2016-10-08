@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 wget http://www.heidisql.com/downloads/releases/HeidiSQL_9.3_Portable.zip -O HeidiSQL.zip
 mkdir -p /opt/HeidiSQL
 unzip HeidiSQL.zip -d /opt/HeidiSQL

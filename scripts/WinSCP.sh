@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 wget http://sourceforge.net/projects/winscp/files/WinSCP/5.9.2/WinSCP-5.9.2-Portable.zip/download -O WinSCP.zip
 mkdir -p /opt/WinSCP
 unzip WinSCP.zip -d /opt/WinSCP
