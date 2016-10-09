@@ -1,7 +1,14 @@
 # foo
 foo bar baz
 
-## Installing linux software on linux (without root)
+## Installing software
+
+```bash
+# Dropbox
+curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dropbox | bash -
+```
+
+### Installing software without root
 
 ```bash
 # micro
@@ -10,7 +17,7 @@ curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/micro | bash 
 
 ## Installing windows software on linux
 
-install dependencies
+install dependencies: wine, icoutils and imagemagick
 
 ```bash
 # for Fedora
