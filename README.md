@@ -1,39 +1,22 @@
 # foo
 foo bar baz
 
-## Installing software
+## Installing software on Ubuntu
 
 ```bash
 # Dropbox
 curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dropbox | bash -
+
+# HeidiSQL (wine)
+curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/HeidiSQL | sudo bash -
+
+# WinSCP (wine)
+curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/WinSCP | sudo bash -
 ```
 
-### Installing software without root
+### Installing software on linux server without root (almost any distro)
 
 ```bash
 # micro
 curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/micro | bash -
 ```
-
-## Installing windows software on linux
-
-install dependencies: wine, icoutils and imagemagick
-
-```bash
-# for Fedora
-dnf install wine icoutils imagemagick
-
-# for Ubuntu
-apt install wine icoutils imagemagick
-```
-
-install prefered software from list below
-
-```bash
-# HeidiSQL
-curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/HeidiSQL | sudo bash -
-
-# WinSCP
-curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/WinSCP | sudo bash -
-```
-
