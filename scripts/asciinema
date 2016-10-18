@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+
+function githubLatestTag {
+    finalUrl=`curl https://github.com/$1/releases/latest -s -L -I -o /dev/null -w '%{url_effective}'`
+    echo "${finalUrl##*v}"
+}
+
+mkdir -p ~/bin
+
+if ! [[ `echo "$PATH" | grep -q $HOME/bin && echo '1'` ]]; then
+    echo 'PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+fi
+
+tag=`githubLatestTag asciinema/asciinema`
+
+wget "https://github.com/asciinema/asciinema/releases/download/v$tag/asciinema-$tag-linux-amd64.tar.gz" -O asciinema.tar.gz
+
+mkdir -p ~/bin
+
+tar -zxvf asciinema.tar.gz "asciinema-$tag-linux-amd64/asciinema" --show-transformed --strip-components=1
+
+rm asciinema.tar.gz -f
+
+mv asciinema ~/bin/asciinema -f

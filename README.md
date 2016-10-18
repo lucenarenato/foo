@@ -19,4 +19,7 @@ curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/WinSCP | sudo
 ```bash
 # micro
 curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/micro | bash -
+
+# asciinema
+curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/asciinema | bash -
 ```
