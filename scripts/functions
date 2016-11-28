@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+# # # # # # # # # # # # # # # # # # # # # # # #
+#       git - the stupid content tracker      #
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+function commit {
+    git status
+
+    commitMessage="${@}"
+
+    read -e -p 'Commit Message: ' -i "$commitMessage" commitMessage
+
+    git commit -m "${commitMessage}"
+}
+
+function fix {
+    git status
+
+    commitMessage="${@}"
+
+    git commit -m "fix \"${commitMessage}\""
+}
+
+function dif {
+    git diff --color | diff-so-fancy | less
+}
+
+function githubLatestTag {
+    finalUrl=`curl https://github.com/$1/releases/latest -s -L -I -o /dev/null -w '%{url_effective}'`
+    echo "${finalUrl##*v}"
+}
+
+function gitStatus {
+    bash -c "cd '$1'; git-radar --bash"
+}
+
+function gitStatusAll {
+    for dir in *; do
+        if [ -d "$dir"/.git ]; then
+            echo $(gitStatus "$dir")
+        else
+            echo
+        fi
+    done
+}
+
+function lg {
+    paste -d ' ' <(CLICOLOR_FORCE=true ls -ld *) <(gitStatusAll)
+}
+
+function gitAmend {
+    git commit --amend -m "$(git log -1 HEAD --pretty=format:%s)"
+}
+
+
+# # # # # # # #  git - aliases  # # # # # # # #
+
+alias git="hub"
+alias add="git add --all && git status"
+
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.ll "status -sb"
+# git config --global alias.amend 'commit --amend -m "$(git log -1 HEAD --pretty=format:%s)"'
+git config --global alias.undo 'reset --soft HEAD~1'
+git config --global alias.discard 'reset --hard'
+
+
+# # # # # # # # # # # # # # # # # # # # # # # #
+#         npm - node package manager          #
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+function npmUpdate {
+    npm list --production --depth=0 | sed 1d | cut -c 5- | tr '\n' ' ' | xargs npm install --save
+}
+
+function npmUpdateDev {
+    npm list --dev        --depth=0 | sed 1d | cut -c 5- | tr '\n' ' ' | xargs npm install --save-dev
+}
+
+function npmUpdateAll {
+    npmUpdate
+    npmUpdateDev
+}
+
+
+# # # # # # # # # # # # # # # # # # # # # # # #
+#           other - everything else           #
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+function lls {
+    CLICOLOR_FORCE=true ls -ld * | awk '{
+        k = 0
+        s = 0
+        for( i = 0; i <= 8; i++ )
+        {
+            k += ( ( substr( $1, i+2, 1 ) ~ /[rwxst]/ ) * 2 ^( 8 - i ) )
+        }
+        j = 4
+        for( i = 4; i <= 10; i += 3 )
+        {
+            s += ( ( substr( $1, i, 1 ) ~ /[stST]/ ) * j )
+            j/=2
+        }
+        if ( k )
+        {
+            printf( "%0o%0o ", s, k )
+        }
+        print
+    }'
+}
