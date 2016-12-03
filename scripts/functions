@@ -7,11 +7,16 @@
 function commit {
     git ll
 
-    commitMessage="${@}"
+    local label='Commit Message: '
+    local msg="${@}"
 
-    read -e -p 'Commit Message: ' -i "$commitMessage" commitMessage
+    if {type vared} &> /dev/null ; then
+        vared -p "$label" msg
+    else
+        read -e -p "$label" -i "$msg" msg
+    fi
 
-    git commit -m "${commitMessage}"
+    git commit -m "$msg"
 }
 
 function fix {
