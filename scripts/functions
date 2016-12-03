@@ -5,7 +5,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # #
 
 function commit {
-    git status
+    git ll
 
     commitMessage="${@}"
 
@@ -15,7 +15,7 @@ function commit {
 }
 
 function fix {
-    git status
+    git ll
 
     commitMessage="${@}"
 
@@ -53,7 +53,7 @@ function lg {
 # # # # # # # #  git - aliases  # # # # # # # #
 
 alias git="hub"
-alias add="git add --all && git status"
+alias add="git add --all && git ll"
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.ll "status -sb"
