@@ -3,6 +3,10 @@ sudo echo "Permissions granted ..."
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 
+wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+sudo dpkg -i ttf-mscorefonts-installer_3.6_all.deb
+rm ttf-mscorefonts-installer_3.6_all.deb -f
+
 wget "https://www.dropbox.com/download?plat=lnx.x86_64" -O - | tar xzf - -C ~
 
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E

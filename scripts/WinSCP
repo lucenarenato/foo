@@ -2,6 +2,10 @@
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
 
+wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+dpkg -i ttf-mscorefonts-installer_3.6_all.deb
+rm ttf-mscorefonts-installer_3.6_all.deb -f
+
 apt-get update
 apt-get install wine icoutils imagemagick -y
 
