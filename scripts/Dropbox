@@ -10,4 +10,4 @@ sudo apt-get update
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 sudo apt-get install dropbox python-gpgme -y
 
-killall nautilus
+nautilus --quit
