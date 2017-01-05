@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+
 apt-get update
 apt-get install wine icoutils imagemagick -y
 
