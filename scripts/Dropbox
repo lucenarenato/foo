@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
+set -e
+
+function ttfMscorefontsInstallerFix {
+    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+    wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+    apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
+    rm ttf-mscorefonts-installer_3.6_all.deb -f
+}
+
+function sylfaenFix {
+    wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
+}
+
 sudo echo "Permissions granted ..."
 
-echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-
-wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
-sudo apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
-rm ttf-mscorefonts-installer_3.6_all.deb -f
-
-sudo wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
+sudo ttfMscorefontsInstallerFix
+sudo sylfaenFix
 
 wget "https://www.dropbox.com/download?plat=lnx.x86_64" -O - | tar xzf - -C ~
 

@@ -1,17 +1,33 @@
 #!/usr/bin/env bash
+set -e
 
-echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+function ttfMscorefontsInstallerFix {
+    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+    wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+    apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
+    rm ttf-mscorefonts-installer_3.6_all.deb -f
+}
 
-wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
-apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
-rm ttf-mscorefonts-installer_3.6_all.deb -f
+function sylfaenFix {
+    wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
+}
 
-wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
+function HeidiSQLLatestVersion {
+    curl http://www.heidisql.com/download.php \
+        | grep -oP 'HeidiSQL_\d+\.\d+_Portable.zip' --color=never \
+        | head -n1 \
+        | grep -oP '\d+\.\d+' --color=never
+}
+
+ttfMscorefontsInstallerFix
+sylfaenFix
 
 apt-get update
 apt-get install wine icoutils imagemagick -y
 
-wget http://www.heidisql.com/downloads/releases/HeidiSQL_9.4_Portable.zip -O HeidiSQL.zip
+version=`HeidiSQLLatestVersion`
+
+wget "http://www.heidisql.com/downloads/releases/HeidiSQL_$version_Portable.zip" -O HeidiSQL.zip
 mkdir -p /opt/HeidiSQL
 unzip HeidiSQL.zip -d /opt/HeidiSQL
 chmod +x /opt/HeidiSQL/heidisql.exe

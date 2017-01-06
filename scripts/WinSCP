@@ -1,17 +1,33 @@
 #!/usr/bin/env bash
+set -e
 
-echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+function ttfMscorefontsInstallerFix {
+    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+    wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+    apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
+    rm ttf-mscorefonts-installer_3.6_all.deb -f
+}
 
-wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
-apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
-rm ttf-mscorefonts-installer_3.6_all.deb -f
+function sylfaenFix {
+    wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
+}
 
-wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
+function WinSCPLatestVersion {
+    curl https://winscp.net/eng/download.php \
+        | grep -oP 'WinSCP-\d+\.\d\.\d+-Portable\.zip' --color=never \
+        | head -n1 \
+        | grep -oP '\d+\.\d+\.\d+' --color=never
+}
+
+ttfMscorefontsInstallerFix
+sylfaenFix
 
 apt-get update
 apt-get install wine icoutils imagemagick -y
 
-wget http://sourceforge.net/projects/winscp/files/WinSCP/5.9.3/WinSCP-5.9.3-Portable.zip/download -O WinSCP.zip
+version=`WinSCPLatestVersion`
+
+wget "http://sourceforge.net/projects/winscp/files/WinSCP/$version/WinSCP-$version-Portable.zip/download" -O WinSCP.zip
 mkdir -p /opt/WinSCP
 unzip WinSCP.zip -d /opt/WinSCP
 chmod +x /opt/WinSCP/WinSCP.exe
