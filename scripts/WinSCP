@@ -6,6 +6,8 @@ wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefont
 apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
 rm ttf-mscorefonts-installer_3.6_all.deb -f
 
+wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
+
 apt-get update
 apt-get install wine icoutils imagemagick -y
 
