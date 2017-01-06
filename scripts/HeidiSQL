@@ -27,7 +27,7 @@ apt-get install wine icoutils imagemagick -y
 
 version=`HeidiSQLLatestVersion`
 
-wget "http://www.heidisql.com/downloads/releases/HeidiSQL_$version_Portable.zip" -O HeidiSQL.zip
+wget "http://www.heidisql.com/downloads/releases/HeidiSQL_${version}_Portable.zip" -O HeidiSQL.zip
 mkdir -p /opt/HeidiSQL
 unzip HeidiSQL.zip -d /opt/HeidiSQL
 chmod +x /opt/HeidiSQL/heidisql.exe

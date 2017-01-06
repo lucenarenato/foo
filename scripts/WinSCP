@@ -27,7 +27,7 @@ apt-get install wine icoutils imagemagick -y
 
 version=`WinSCPLatestVersion`
 
-wget "http://sourceforge.net/projects/winscp/files/WinSCP/$version/WinSCP-$version-Portable.zip/download" -O WinSCP.zip
+wget "http://sourceforge.net/projects/winscp/files/WinSCP/$version/WinSCP-${version}-Portable.zip/download" -O WinSCP.zip
 mkdir -p /opt/WinSCP
 unzip WinSCP.zip -d /opt/WinSCP
 chmod +x /opt/WinSCP/WinSCP.exe
