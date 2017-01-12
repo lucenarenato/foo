@@ -22,4 +22,7 @@ bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/mi
 
 # asciinema
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/asciinema)"
+
+# rsub
+bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/rsub)"
 ```

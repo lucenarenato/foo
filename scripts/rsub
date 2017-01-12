@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -e
+
+function githubLatestTag {
+    finalUrl=`curl https://github.com/$1/releases/latest -s -L -I -o /dev/null -w '%{url_effective}'`
+    echo "${finalUrl##*v}"
+}
+
+mkdir -pv ~/bin
+
+if ! [[ `echo "$PATH" | grep -q $HOME/bin && echo '1'` ]]; then
+    echo 'PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+fi
+
+tag=`githubLatestTag aurora/rmate`
+
+wget "https://github.com/aurora/rmate/archive/v$tag.tar.gz" -O rmate.tar.gz --progress=dot
+
+tar -zxvf rmate.tar.gz "rmate-$tag/rmate" --show-transformed --strip-components=1
+
+rm rmate.tar.gz -fv
+
+mv rmate ~/bin/subl -fv
