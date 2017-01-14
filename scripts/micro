@@ -10,6 +10,7 @@ mkdir -p ~/bin
 
 if ! [[ `echo "$PATH" | grep -q $HOME/bin && echo '1'` ]]; then
     echo 'PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+    export PATH="$HOME/bin:$PATH"
 fi
 
 tag=`githubLatestTag zyedidia/micro`
