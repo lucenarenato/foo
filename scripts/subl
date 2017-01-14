@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+
+function sublimeTextLatestVersion {
+    curl https://www.sublimetext.com/3 \
+        | grep -oP 'https\:\/\/download\.sublimetext\.com\/sublime-text_build-\d+_amd64\.deb' --color=never
+}
+
+sudo echo "Permissions granted ..."
+
+sudo apt update
+
+wget $(sublimeTextLatestVersion) -O sublimeText.deb
+
+sudo apt install ./sublimeText.deb -y
+
+rm sublimeText.deb -fv
