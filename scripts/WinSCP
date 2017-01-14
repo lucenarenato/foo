@@ -2,14 +2,14 @@
 set -e
 
 function ttfMscorefontsInstallerFix {
-    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
-    wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
-    apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
-    rm ttf-mscorefonts-installer_3.6_all.deb -f
+    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+    sudo wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+    sudo apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
+    sudo rm ttf-mscorefonts-installer_3.6_all.deb -fv
 }
 
 function sylfaenFix {
-    wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
+    sudo wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/ -O Sylfaen.ttf
 }
 
 function WinSCPLatestVersion {
@@ -19,23 +19,25 @@ function WinSCPLatestVersion {
         | grep -oP '\d+\.\d+\.\d+' --color=never
 }
 
+sudo echo "Permissions granted ..."
+
 ttfMscorefontsInstallerFix
 sylfaenFix
 
-apt-get update
-apt-get install wine icoutils imagemagick -y
+sudo apt update
+sudo apt install wine icoutils imagemagick -y
 
 version=`WinSCPLatestVersion`
 
-wget "http://sourceforge.net/projects/winscp/files/WinSCP/$version/WinSCP-${version}-Portable.zip/download" -O WinSCP.zip
-mkdir -p /opt/WinSCP
-unzip WinSCP.zip -d /opt/WinSCP
-chmod +x /opt/WinSCP/WinSCP.exe
-chmod +x /opt/WinSCP/WinSCP.com
+sudo wget "http://sourceforge.net/projects/winscp/files/WinSCP/$version/WinSCP-${version}-Portable.zip/download" -O WinSCP.zip
+sudo mkdir -pv /opt/WinSCP
+sudo unzip -o WinSCP.zip -d /opt/WinSCP
+sudo chmod +x -v /opt/WinSCP/WinSCP.exe
+sudo chmod +x -v /opt/WinSCP/WinSCP.com
 
-touch /usr/share/applications/WinSCP.desktop
+sudo touch /usr/share/applications/WinSCP.desktop
 
-cat <<EOF > /usr/share/applications/WinSCP.desktop
+cat <<EOF | sudo tee /usr/share/applications/WinSCP.desktop > /dev/null
 [Desktop Entry]
 Name=WinSCP
 Exec=WinSCP
@@ -44,9 +46,9 @@ Type=Application
 Categories=GTK;GNOME;Utility;
 EOF
 
-ln -s /opt/WinSCP/WinSCP.exe /bin/WinSCP
+sudo ln -svf /opt/WinSCP/WinSCP.exe /bin/WinSCP
 
-wrestool -x -n MAINICON /opt/WinSCP/WinSCP.exe > /opt/WinSCP/WinSCP.ico
-convert /opt/WinSCP/WinSCP.ico\[0\] /usr/share/icons/WinSCP.png
+sudo wrestool -x -n MAINICON /opt/WinSCP/WinSCP.exe | sudo tee /opt/WinSCP/WinSCP.ico > /dev/null
+sudo convert /opt/WinSCP/WinSCP.ico\[0\] /usr/share/icons/WinSCP.png
 
-rm WinSCP.zip -f
+sudo rm WinSCP.zip -fv

@@ -11,10 +11,10 @@ bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dr
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/subl)"
 
 # HeidiSQL (wine)
-sudo bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/HeidiSQL)"
+bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/HeidiSQL)"
 
 # WinSCP (wine)
-sudo bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/WinSCP)"
+bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/WinSCP)"
 ```
 
 ### Installing software on linux server without root (almost any distro)
