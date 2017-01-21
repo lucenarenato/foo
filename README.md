@@ -7,6 +7,9 @@ foo bar baz
 # Dropbox
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dropbox)"
 
+# Oh My ZSH! (zsh)
+bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dropbox)"
+
 # Sublime Text 3
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/subl)"
 

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -e
+
+sudo echo "Permissions granted ..."
+
+sudo apt update
+
+sudo apt install zsh git -y
+
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+echo "You need to reboot to make zsh default shell!"
+
+read -p "reboot now? " -n 1 -r
+
+echo
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    reboot
+fi
