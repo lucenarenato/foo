@@ -4,7 +4,7 @@ foo bar baz
 ## Installing software on Ubuntu
 
 ```bash
-# Dropbox
+# Dropbox (wine)
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dropbox)"
 
 # Oh My ZSH! (zsh)
