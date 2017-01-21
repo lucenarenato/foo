@@ -4,6 +4,9 @@ foo bar baz
 ## Installing software on Ubuntu
 
 ```bash
+# Wine Staging
+bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/wine)"
+
 # Dropbox (wine)
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dropbox)"
 

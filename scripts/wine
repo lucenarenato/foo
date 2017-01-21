@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -e
+
+function ttfMscorefontsInstallerFix {
+    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+    sudo wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+    sudo apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
+    sudo rm ttf-mscorefonts-installer_3.6_all.deb -fv
+}
+
+function sylfaenFix {
+    sudo wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/ -O Sylfaen.ttf
+}
+
+sudo echo "Permissions granted ..."
+
+ttfMscorefontsInstallerFix
+sylfaenFix
+
+sudo add-apt-repository ppa:wine/wine-builds -y
+sudo apt-get update
+sudo apt-get install --install-recommends wine-staging winehq-staging -y
