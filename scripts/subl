@@ -6,12 +6,24 @@ function sublimeTextLatestVersion {
         | grep -oP 'https\:\/\/download\.sublimetext\.com\/sublime-text_build-\d+_amd64\.deb' --color=never
 }
 
+function installPackageControl {
+    mkdir -pv ~/.config/sublime-text-3/Installed\ Packages/
+
+    sudo wget https://packagecontrol.io/Package%20Control.sublime-package -P ~/.config/sublime-text-3/Installed\ Packages/
+}
+
+function installSublimeText {
+    wget $(sublimeTextLatestVersion) -O sublimeText.deb
+
+    sudo apt install ./sublimeText.deb -y
+
+    rm sublimeText.deb -fv
+}
+
 sudo echo "Permissions granted ..."
 
 sudo apt update
 
-wget $(sublimeTextLatestVersion) -O sublimeText.deb
+installSublimeText
 
-sudo apt install ./sublimeText.deb -y
-
-rm sublimeText.deb -fv
+installPackageControl

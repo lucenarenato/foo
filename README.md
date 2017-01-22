@@ -13,7 +13,7 @@ bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dr
 # Oh My ZSH! (zsh)
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/Dropbox)"
 
-# Sublime Text 3
+# Sublime Text 3 (Package Control)
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/subl)"
 
 # HeidiSQL (wine)
