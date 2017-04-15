@@ -68,24 +68,6 @@ git config --global alias.discard 'reset --hard'
 
 
 # # # # # # # # # # # # # # # # # # # # # # # #
-#         npm - node package manager          #
-# # # # # # # # # # # # # # # # # # # # # # # #
-
-function npmUpdate {
-    npm list --production --depth=0 | sed 1d | cut -c 5- | tr '\n' ' ' | xargs npm install --save
-}
-
-function npmUpdateDev {
-    npm list --dev        --depth=0 | sed 1d | cut -c 5- | tr '\n' ' ' | xargs npm install --save-dev
-}
-
-function npmUpdateAll {
-    npmUpdate
-    npmUpdateDev
-}
-
-
-# # # # # # # # # # # # # # # # # # # # # # # #
 #           other - everything else           #
 # # # # # # # # # # # # # # # # # # # # # # # #
 
