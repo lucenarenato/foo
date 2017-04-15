@@ -71,6 +71,11 @@ git config --global alias.discard 'reset --hard'
 #           other - everything else           #
 # # # # # # # # # # # # # # # # # # # # # # # #
 
+function ssh-chmod {
+    chmod 700 ~/.ssh
+    chmod 600 ~/.ssh/*
+}
+
 function lls {
     CLICOLOR_FORCE=true ls -ld * | awk '{
         k = 0
