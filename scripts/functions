@@ -54,6 +54,9 @@ function lg {
     paste -d ' ' <(CLICOLOR_FORCE=true ls -ld *) <(gitStatusAll)
 }
 
+function gtake {
+    hub clone ${@} && cd $(basename -s .git $1)
+}
 
 # # # # # # # #  git - aliases  # # # # # # # #
 
