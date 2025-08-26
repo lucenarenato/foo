@@ -21,9 +21,9 @@ ttfMscorefontsInstallerFix
 sylfaenFix
 
 # Adiciona o PPA do Wine e instala
-sudo add-apt-repository ppa:wine/wine-builds -y
-sudo apt-get update
-sudo apt-get install --install-recommends wine-staging winehq-staging -y
+#sudo add-apt-repository ppa:wine/wine-builds -y
+#sudo apt-get update
+#sudo apt-get install --install-recommends wine-staging winehq-staging -y
 
 # Baixa e executa o script do HeidiSQL
 ## bash -c "$(curl -fsSL https://raw.githubusercontent.com/lucenarenato/foo/master/scripts/HeidiSQL)"
