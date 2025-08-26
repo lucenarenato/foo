@@ -19,6 +19,8 @@ bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/su
 # HeidiSQL (wine)
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/HeidiSQL)"
 
+bash -c "$(curl https://raw.githubusercontent.com/lucenarenato/foo/master/scripts/HeidiSQL)"
+
 # WinSCP (wine)
 bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/WinSCP)"
 ```
