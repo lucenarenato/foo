@@ -10,7 +10,7 @@ function HeidiSQLLatestVersion {
 
 sudo echo "Permissions granted ..."
 
-bash -c "$(curl https://raw.githubusercontent.com/thecotne/foo/master/scripts/wine)"
+bash -c "$(curl https://raw.githubusercontent.com/lucenarenato/foo/master/scripts/wine)"
 
 sudo apt update
 sudo apt install icoutils imagemagick -y
