@@ -3,9 +3,9 @@ set -e
 
 function ttfMscorefontsInstallerFix {
     echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-    sudo wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
-    sudo apt install ./ttf-mscorefonts-installer_3.6_all.deb -fy
-    sudo rm ttf-mscorefonts-installer_3.6_all.deb -fv
+    sudo wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.8_all.deb
+    sudo apt install ./ttf-mscorefonts-installer_3.8_all.deb -fy
+    sudo rm	ttf-mscorefonts-installer_3.8_all.deb -fv
 }
 
 function sylfaenFix {
