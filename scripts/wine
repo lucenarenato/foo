@@ -2,21 +2,28 @@
 set -e
 
 function ttfMscorefontsInstallerFix {
+    # Aceita o EULA automaticamente para evitar a tela de prompt
     echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-    wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.8_all.deb
-    sudo apt install ./ttf-mscorefonts-installer_3.8_all.deb -fy
-    sudo rm	ttf-mscorefonts-installer_3.8_all.deb -fv
+    
+    # Instala o pacote diretamente do repositório
+    sudo apt-get install ttf-mscorefonts-installer -y
 }
 
 function sylfaenFix {
-    sudo wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/ -O Sylfaen.ttf
+    # Baixa e instala a fonte Sylfaen
+    sudo wget https://gist.github.com/thecotne/33fa67bed95d2eb78e1671be060be2cb/raw/5d88b4c6d45afe7a85e9ce03fc3ae10732890762/Sylfaen.ttf -P /usr/share/fonts/
 }
 
-sudo echo "Permissions granted ..."
+echo "Permissions granted ..."
 
+# Executa as funções
 ttfMscorefontsInstallerFix
 sylfaenFix
 
+# Adiciona o PPA do Wine e instala
 sudo add-apt-repository ppa:wine/wine-builds -y
 sudo apt-get update
 sudo apt-get install --install-recommends wine-staging winehq-staging -y
+
+# Baixa e executa o script do HeidiSQL
+## bash -c "$(curl -fsSL https://raw.githubusercontent.com/lucenarenato/foo/master/scripts/HeidiSQL)"
